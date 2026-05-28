@@ -1,0 +1,45 @@
+{
+  "name": "quai-graph-example",
+  "version": "0.1.0",
+  "description": "Example app demonstrating how to query the Quai Network Graph Node at graph.quai.network, with a walkthrough for authoring your own subgraph.",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dominant-strategies/quai-graph-example"
+  },
+  "homepage": "https://github.com/dominant-strategies/quai-graph-example#readme",
+  "bugs": {
+    "url": "https://github.com/dominant-strategies/quai-graph-example/issues"
+  },
+  "keywords": [
+    "quai",
+    "quai-network",
+    "the-graph",
+    "subgraph",
+    "graphql",
+    "blockchain",
+    "indexer",
+    "example"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "graphql": "^16.9.0",
+    "graphql-request": "^7.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "shiki": "^1.22.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

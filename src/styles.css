@@ -1,0 +1,456 @@
+/* ───────── Brand fonts (locally hosted, pulled from supply.qu.ai) ───────── */
+@font-face {
+  font-family: "Bai Jamjuree";
+  src: url("/fonts/BaiJamjuree-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Monorama";
+  src: url("/fonts/Monorama-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "YapariSemBd";
+  src: url("/fonts/Yapari-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ───────── Brand tokens (mirrors supply.qu.ai) ───────── */
+:root {
+  --brand-red: #e20101;
+  --brand-red-deep: #b80000;
+  --brand-amber: #f0a16d;
+
+  /* light theme (default) */
+  --background: #f7f2ee;
+  --foreground: #0b0b0b;
+  --muted: #00000099;
+  --muted-strong: #000000cc;
+  --card-bg: #ffffff;
+  --card-border: #0000001a;
+  --card-border-strong: #00000026;
+  --nav-bg: #f7f2eee0;
+  --nav-border: #0000001f;
+  --input-bg: #ffffff;
+  --input-border: #00000026;
+  --chart-grid: #00000014;
+  --tab-active-fg: #0b0b0b;
+  --callout-bg: #fff5ec;
+  --callout-warn-bg: #fdecec;
+  --code-bg: #f1ece7;
+}
+
+:root.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #ffffff8c;
+  --muted-strong: #ffffffe6;
+  --card-bg: #080808;
+  --card-border: #ffffff1f;
+  --card-border-strong: #ffffff29;
+  --nav-bg: #000000e0;
+  --nav-border: #ffffff1f;
+  --input-bg: #0e0e0e;
+  --input-border: #ffffff29;
+  --chart-grid: #ffffff17;
+  --tab-active-fg: #ffffff;
+  --callout-bg: #1a0f08;
+  --callout-warn-bg: #1f0808;
+  --code-bg: #0d0d0d;
+  --brand-red-deep: #ff3d3d;
+}
+
+/* ───────── Base ───────── */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Bai Jamjuree", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--brand-red);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code,
+pre,
+.mono {
+  font-family: "Monorama", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+code {
+  background: var(--code-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* ───────── Layout ───────── */
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 64px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.brand .title {
+  font-family: "YapariSemBd", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--foreground);
+}
+
+.brand .subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.header .endpoint {
+  color: var(--muted);
+  font-size: 12px;
+  max-width: 360px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--card-border-strong);
+  color: var(--foreground);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.theme-toggle:hover {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+/* ───────── Tabs ───────── */
+.tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 22px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.1s, border-color 0.1s;
+}
+
+.tab:hover {
+  color: var(--foreground);
+}
+
+.tab.active {
+  color: var(--tab-active-fg);
+  border-bottom-color: var(--brand-red);
+}
+
+/* ───────── Panels & headings ───────── */
+.panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h1 {
+  font-family: "YapariSemBd", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+h2 {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ───────── Tables ───────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+td.mono {
+  font-family: "Monorama", ui-monospace, monospace;
+}
+
+/* ───────── KPIs ───────── */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.kpi .label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+}
+
+.kpi .value {
+  font-family: "YapariSemBd", ui-sans-serif, sans-serif;
+  font-size: 22px;
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+  color: var(--foreground);
+}
+
+/* ───────── Forms ───────── */
+textarea.query {
+  width: 100%;
+  min-height: 200px;
+  background: var(--input-bg);
+  color: var(--foreground);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 12px;
+  font-family: "Monorama", ui-monospace, monospace;
+  font-size: 13px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+textarea.query:focus {
+  outline: none;
+  border-color: var(--brand-red);
+}
+
+button.run {
+  background: var(--brand-red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+button.run:hover {
+  background: var(--brand-red-deep);
+}
+button.run:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+select,
+.preset-select {
+  background: var(--input-bg);
+  color: var(--foreground);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 7px 11px;
+  font-family: inherit;
+  font-size: 13px;
+}
+select:focus {
+  outline: none;
+  border-color: var(--brand-red);
+}
+
+/* ───────── Code / result ───────── */
+pre.result {
+  background: var(--code-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow: auto;
+  max-height: 480px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.error {
+  color: var(--brand-red);
+}
+
+/* ───────── Row helpers ───────── */
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* ───────── Code blocks (BuildYourOwn tab) ───────── */
+.code-block {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 12px 0;
+  background: var(--code-bg);
+}
+.code-block .filename {
+  background: transparent;
+  padding: 8px 14px;
+  font-family: "Monorama", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--card-border);
+}
+.code-block pre {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  font-size: 12.5px;
+  background: transparent !important;
+}
+.code-block pre code {
+  background: none !important;
+  padding: 0;
+}
+
+/* Shiki dual-theme: default to light token colors; .dark on <html> flips to dark */
+.shiki span { color: var(--shiki-light); }
+.shiki { background-color: transparent !important; }
+:root.dark .shiki span { color: var(--shiki-dark); }
+
+/* ───────── Callouts ───────── */
+.callout {
+  background: var(--callout-bg);
+  border-left: 3px solid var(--brand-amber);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.callout.warn {
+  background: var(--callout-warn-bg);
+  border-left-color: var(--brand-red);
+}
+
+/* ───────── Responsive ───────── */
+@media (max-width: 720px) {
+  .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header .endpoint {
+    display: none;
+  }
+}

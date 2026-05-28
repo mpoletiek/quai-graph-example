@@ -1,0 +1,29 @@
+type Token @entity {
+  "Contract address (lowercased hex)"
+  id: ID!
+  name: String
+  symbol: String
+  decimals: Int
+  totalTransfers: BigInt!
+}
+
+type Account @entity {
+  "Wallet address (lowercased hex)"
+  id: ID!
+  balance: BigInt!
+  sentCount: BigInt!
+  receivedCount: BigInt!
+  transfersSent: [Transfer!]! @derivedFrom(field: "from")
+  transfersReceived: [Transfer!]! @derivedFrom(field: "to")
+}
+
+type Transfer @entity(immutable: true) {
+  "txHash-logIndex"
+  id: ID!
+  from: Account!
+  to: Account!
+  amount: BigInt!
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+}

@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+description: Indexes Wrapped Qi (WQI) ERC-20 transfers on Quai Cyprus-1.
+repository: https://github.com/dominant-strategies/quai-graph-example
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: WrappedQi
+    network: quai
+    source:
+      address: "0x002b2596ecf05c93a31ff916e8b456df6c77c750"
+      abi: ERC20
+      startBlock: 0
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - Account
+        - Transfer
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
