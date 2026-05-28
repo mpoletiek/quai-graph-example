@@ -9,7 +9,7 @@ One `npm run dev` launches a four-tab teaching UI:
 | Tab | What it does |
 | --- | --- |
 | **Overview** | What `graph.quai.network` is, the `Block` schema exposed by the live `quai-blocks` subgraph, copy-pasteable `curl` examples, and a callout on combining selections to avoid rate limits |
-| **Live Blocks** | Polls the live endpoint every 5s — latest 20 blocks, gas-used sparkline, derived avg block time, indexer health |
+| **Live Blocks** | Polls the live endpoint every 5s — latest 20 blocks, gas-used bar chart, derived avg block time, indexer health |
 | **Query Playground** | Mini GraphQL editor with preset queries covering pagination, filtering, ordering, `_meta`, and combined selections |
 | **Build Your Own** | Annotated walkthrough of [`my-subgraph/`](./my-subgraph) — a real, buildable subgraph that indexes Wrapped Qi (WQI) ERC-20 transfers — with deploy commands for both the hosted node and a local Graph Node stack |
 
@@ -52,7 +52,7 @@ npm run dev
 │   │   └── queries.ts        # GraphQL queries + Playground presets
 │   ├── tabs/
 │   │   ├── Overview.tsx
-│   │   ├── LiveBlocks.tsx    # polling + KPIs + sparkline
+│   │   ├── LiveBlocks.tsx    # polling + KPIs + bar chart
 │   │   ├── Playground.tsx    # mini-GraphiQL
 │   │   └── BuildYourOwn.tsx  # imports my-subgraph/* as raw text
 │   └── styles.css            # Quai brand palette + light/dark themes

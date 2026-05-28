@@ -90,7 +90,7 @@ export function LiveBlocks() {
 
       <div className="panel">
         <div className="row" style={{ justifyContent: "space-between" }}>
-          <h2 style={{ margin: 0 }}>Gas used per block (sparkline)</h2>
+          <h2 style={{ margin: 0 }}>Gas used per block</h2>
           <span className="muted" style={{ fontSize: 12 }}>
             Polling every {POLL_MS / 1000}s · last update{" "}
             {lastFetched ? new Date(lastFetched).toLocaleTimeString() : "—"}
@@ -102,7 +102,7 @@ export function LiveBlocks() {
             )}
           </span>
         </div>
-        <Sparkline values={[...blocks].reverse().map((b) => Number(b.gasUsed ?? 0))} />
+        <GasBars values={[...blocks].reverse().map((b) => Number(b.gasUsed ?? 0))} />
       </div>
 
       <div className="panel">
@@ -146,7 +146,7 @@ function Kpi({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Sparkline({ values }: { values: number[] }) {
+function GasBars({ values }: { values: number[] }) {
   if (values.length < 2) {
     return <div className="muted" style={{ padding: 20 }}>Need at least 2 blocks…</div>;
   }
