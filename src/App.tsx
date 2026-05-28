@@ -75,6 +75,41 @@ export function App() {
       </nav>
 
       <Active />
+
+      <footer className="footer">
+        <div className="footer-grid">
+          <div>
+            <div className="footer-heading">Project</div>
+            <a href="https://github.com/mpoletiek/quai-graph-example" target="_blank" rel="noreferrer">
+              GitHub repository
+            </a>
+            <a href="https://github.com/mpoletiek/quai-graph-example/issues" target="_blank" rel="noreferrer">
+              Report an issue
+            </a>
+            <a href="https://github.com/mpoletiek/quai-graph-example/blob/main/LICENSE" target="_blank" rel="noreferrer">
+              License (GPL-3.0)
+            </a>
+          </div>
+          <div>
+            <div className="footer-heading">Quai Network</div>
+            <a href="https://qu.ai/" target="_blank" rel="noreferrer">qu.ai</a>
+            <a href="https://docs.qu.ai/" target="_blank" rel="noreferrer">Documentation</a>
+            <a href="https://quaiscan.io/" target="_blank" rel="noreferrer">Quaiscan explorer</a>
+            <a href="https://github.com/dominant-strategies/go-quai" target="_blank" rel="noreferrer">go-quai</a>
+          </div>
+          <div>
+            <div className="footer-heading">Graph / data</div>
+            <a href="https://graph.quai.network/" target="_blank" rel="noreferrer">graph.quai.network</a>
+            <a href="https://github.com/dominant-strategies/quai-blocks-subgraph" target="_blank" rel="noreferrer">quai-blocks-subgraph</a>
+            <a href="https://thegraph.com/docs/en/developing/creating-a-subgraph/" target="_blank" rel="noreferrer">Build a subgraph</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span className="muted">
+            Built for the Quai Network developer ecosystem · not affiliated with Dominant Strategies
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

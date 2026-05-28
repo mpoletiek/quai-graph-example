@@ -445,8 +445,57 @@ pre.result {
   border-left-color: var(--brand-red);
 }
 
+/* ───────── Footer ───────── */
+.footer {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--card-border);
+  font-size: 13px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.footer-heading {
+  font-family: "YapariSemBd", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+  margin-bottom: 10px;
+}
+
+.footer-grid a {
+  display: block;
+  color: var(--foreground);
+  text-decoration: none;
+  padding: 3px 0;
+  opacity: 0.85;
+}
+
+.footer-grid a:hover {
+  color: var(--brand-red);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  padding-top: 18px;
+  border-top: 1px solid var(--card-border);
+  font-size: 12px;
+}
+
 /* ───────── Responsive ───────── */
 @media (max-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
   .kpis {
     grid-template-columns: repeat(2, 1fr);
   }

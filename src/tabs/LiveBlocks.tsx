@@ -150,21 +150,46 @@ function Sparkline({ values }: { values: number[] }) {
   if (values.length < 2) {
     return <div className="muted" style={{ padding: 20 }}>Need at least 2 blocks…</div>;
   }
-  const w = 1000, h = 120, pad = 8;
+  // Bars render better than a polyline for per-block gas — most blocks on
+  // Cyprus-1 are empty (0 gas) with occasional spikes, so a line collapses
+  // to the floor and looks broken even when it's working.
+  const w = 1000, h = 120, padX = 4, padY = 8;
   const max = Math.max(...values, 1);
-  const min = Math.min(...values);
-  const range = max - min || 1;
-  const stepX = (w - pad * 2) / (values.length - 1);
-  const points = values
-    .map((v, i) => {
-      const x = pad + i * stepX;
-      const y = h - pad - ((v - min) / range) * (h - pad * 2);
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(" ");
+  const innerW = w - padX * 2;
+  const innerH = h - padY * 2;
+  const slot = innerW / values.length;
+  const barW = Math.max(2, slot * 0.7);
+
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ width: "100%", height: 120, display: "block" }}>
-      <polyline fill="none" stroke="var(--accent)" strokeWidth="2" points={points} />
+    <svg
+      viewBox={`0 0 ${w} ${h}`}
+      preserveAspectRatio="none"
+      style={{ width: "100%", height: 120, display: "block" }}
+    >
+      {/* baseline */}
+      <line
+        x1={padX} x2={w - padX} y1={h - padY} y2={h - padY}
+        stroke="var(--card-border)" strokeWidth="1"
+        vectorEffect="non-scaling-stroke"
+      />
+      {values.map((v, i) => {
+        const barH = max === 0 ? 0 : (v / max) * innerH;
+        const x = padX + slot * i + (slot - barW) / 2;
+        const y = h - padY - barH;
+        return (
+          <rect
+            key={i}
+            x={x}
+            y={y}
+            width={barW}
+            height={barH}
+            fill={v === 0 ? "var(--card-border-strong)" : "var(--brand-red)"}
+            rx="1"
+          >
+            <title>{`Block #${i + 1} of last ${values.length} · gas used: ${v.toLocaleString()}`}</title>
+          </rect>
+        );
+      })}
     </svg>
   );
 }
